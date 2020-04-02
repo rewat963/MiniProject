@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>รายละเอียดห้องเช่า</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item><br>
+    <h3>ชื่อห้องเช่า : {{detail.rentalroom_name}}</h3>
+  </ion-item>
+  <ion-item>
+    <h3>ที่อยู่ :{{detail.rentalroom_name_location}}</h3>
+  </ion-item>
+  <ion-item>
+    <h3>ราคา :{{detail.rentalroom_price}} THB</h3>
+  </ion-item>
+  <ion-item>
+    <h3>จำกัดเพศของผู้เช่า : {{detail.rentalroom_limitedroom_sex}}</h3>
+  </ion-item>
+  <ion-item *ngFor="let name of catnmame">
+    <h3>ประเภทห้องเช่า : {{name.category_name}}</h3>
+  </ion-item>
+  <ion-item>
+    <h3>เป็นห้องเช่าแบบ : {{detail.rentalroom_facilities}}</h3>
+  </ion-item>
+  <ion-item>
+    <h3>เบอร์ติดต่อ : {{detail.rentalroom_phone}}</h3>
+  </ion-item>
+  <ion-col>
+    <button ion-button icon-left full (click)="share(detail)" color="primary">
+      <div>แชร์</div>
+    </button>
+  </ion-col>
+  <ion-col>
+    <button ion-button icon-left full (click)="catmap(detail)" color="primary">
+      <div>ดูแผนที่</div>
+    </button>
+  </ion-col>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-9>
+        <h5>ระดับดาว : {{score}} <ion-icon name="star"></ion-icon>
+        </h5>
+        <ionic3-star-rating #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="yellow"
+          defaultColor="#f4f4f4" readonly="false" rating="{{score}}" fontSize="22px">
+        </ionic3-star-rating>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-label floating>แสดงความคิดเห็น</ion-label>
+      <ion-input type="text" [(ngModel)]="comment"></ion-input>
+    </ion-item>
+
+    <button ion-button color="primary" (click)="summit(comment)">ส่ง</button>
+  </ion-grid>
+  <h4>ความคิดเห็น</h4>
+  <ion-item *ngFor="let com of comement">
+    <br>
+    <h2>{{com.comment_content}} </h2>
+    <button item-end>{{com.comment_score}}<ion-icon name="star"></ion-icon></button>
+  </ion-item>
+</ion-content>
